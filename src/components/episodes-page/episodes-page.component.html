@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="content">
+    <div class="episode-list">
+      <div class="show-selection">
+        <label for="showSelect">Show:</label>
+        <select
+          id="showSelect"
+          #selectRef
+          (change)="showSelectChange(selectRef)"
+        >
+          @for (o of showIds; track o) {
+          <option [value]="o">{{ o }}</option>
+          }
+        </select>
+        <label for="gradeFilter">Filer low ratings:</label>
+        <input
+          #ratingCheckRef
+          type="checkbox"
+          id="gradeFilter"
+          (change)="showRatingFilterChange($event)"
+        />
+      </div>
+      <app-episodes-table [episodes]="episodes$ | async"></app-episodes-table>
+    </div>
+    <div class="episode">
+      <ng-template #summary let-episode="episode">
+        <div class="d-flex">
+          <div>Summary:</div>
+          <div [innerHTML]="episode.summary"></div>
+        </div>
+      </ng-template>
+      @if (episode$ | async; as episode) {
+        @if (isOldEpisode) {
+          <div>Episode Name: {{ episode.name }}</div>
+          <div>Show Name: {{ episode._links.show.name }}</div>
+          <div>ID: {{ episode.id }}</div>
+          <div>Air Date: {{ episode.airstamp | date:'dd/MM/yyyy' }}</div>
+          <div *ngTemplateOutlet="summary; context: { episode: episode }"></div>
+        } @else {
+          <div *ngTemplateOutlet="summary; context: { episode: episode }"></div>
+          <div>Runtime: {{ episode.runtime }}</div>
+          <div>Season: {{ episode.season }}</div>
+          <div>Name: {{ episode.name }}</div>
+        }
+      } @else {
+      <p class="msg">No selected episode</p>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+table {
+  tbody {
+    tr {
+      height: 28px;
+      cursor: pointer;
+
+      &:hover {
+        background: beige;
+      }
+
+      &.selected {
+        background: beige;
+        cursor: default;
+      }
+    }
+  }
+}

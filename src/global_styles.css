@@ -1,0 +1,28 @@
+/* Add application styles & imports to this file! */
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0px;
+}
+
+.msg {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  color: brown;
+}
+
+.d-flex {
+  display: flex;
+  align-items: baseline;
+
+  > div {
+    margin-inline-end: 5px;
+  }
+}

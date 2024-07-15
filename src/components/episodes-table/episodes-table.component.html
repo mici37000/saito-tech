@@ -1,0 +1,22 @@
+<table class="episodes">
+  <thead>
+    <tr>
+      <th>Season</th>
+      <th>Episode</th>
+      <th>Name</th>
+      <th>Runtime</th>
+      <th>Air year</th>
+      <th>Avg. rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let episode of episodes" (click)="episodeClick(episode.id)" [ngClass]="{ 'selected': (showsApiService.activeEpisode$ | async) === episode.number }">
+      <td>{{ episode.season }}</td>
+      <td>{{ episode.number }}</td>
+      <td>{{ episode.name }}</td>
+      <td>{{ episode.runtime }}</td>
+      <td>{{ episode.airstamp | date:'yyyy' }}</td>
+      <td>{{ episode.rating.average }}</td>
+    </tr>
+  </tbody>
+</table>
